@@ -1,4 +1,4 @@
-body {
+/*body {
   text-align: center;
   font-family: courier;
   background-image: url("../assets/image.jpeg");
@@ -19,6 +19,210 @@ body {
 
 .my_social a img {
   height: 1.5em;
+}
+
+:root {
+  --block-size: 40px;
+  --block-size-b: 30px;
+  --border-weight: 18px;
+  --check-color: #eee;
+  --check-delay: 0s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #8800aa, #cc33cc);
+  overflow: hidden;
+}
+
+.bg-div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to bottom right, #f400aa, #f822ff);
+  transition: all 3.5s ease;
+  opacity: 1;
+  z-index: -1;
+}
+
+input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
+
+.container {
+  display: grid;
+  grid: var(--block-size) repeat(4, var(--block-size-b)) var(--block-size)/var(--block-size) repeat(4, var(--block-size-b)) var(--block-size);
+  grid-gap: 0px;
+  grid-auto-flow: row;
+  transition: grid-gap 0.2s ease, -webkit-transform 3s ease 0s;
+  transition: transform 3s ease 0s, grid-gap 0.2s ease;
+  transition: transform 3s ease 0s, grid-gap 0.2s ease, -webkit-transform 3s ease 0s;
+}
+
+.blok {
+  transition: border-color 0.8s ease 1.7s, -webkit-transform 1s ease var(--check-delay);
+  transition: transform 1s ease var(--check-delay), border-color 0.8s ease 1.7s;
+  transition: transform 1s ease var(--check-delay), border-color 0.8s ease 1.7s, -webkit-transform 1s ease var(--check-delay);
+}
+
+.blok:nth-child(3n) {
+  border-right: var(--border-weight) solid var(--check-color);
+}
+
+.blok:nth-child(3n - 2) {
+  border-left: var(--border-weight) solid var(--check-color);
+}
+
+.blok:nth-child(-n + 3) {
+  border-top: var(--border-weight) solid var(--check-color);
+}
+
+.blok:nth-child(n + 7) {
+  border-bottom: var(--border-weight) solid var(--check-color);
+}
+
+.check-a {
+  --check-delay: 0s;
+  grid-row: 1 / span 2;
+}
+
+.side-top {
+  --check-delay: 0s;
+  grid-column: 2 / span 3;
+}
+
+.check-b {
+  --check-delay: 0.3s;
+  grid-column: 5 / span 2;
+}
+
+.side-left {
+  --check-delay: 0.9s;
+  grid-row: 3 / span 3;
+}
+
+.center {
+  grid-row: 2 / span 4;
+  grid-column: 2 / span 4;
+  visibility: hidden;
+}
+
+.side-right {
+  --check-delay: 0.3s;
+  grid-row: 2 / span 3;
+  grid-column: 6 / span 1;
+}
+
+.check-d {
+  --check-delay: 0.9s;
+  grid-column: 1 / span 2;
+}
+
+.side-bottom {
+  --check-delay: 0.6s;
+  grid-column: 3 / span 3;
+}
+
+.check-c {
+  --check-delay: 0.6s;
+  grid-row: 5 / span 2;
+  grid-column: 6 / span 1;
+}
+
+input[type=checkbox]:not(:checked)~.container:hover {
+  grid-gap: 10px;
+}
+
+input[type=checkbox]:checked~.bg-div {
+  opacity: 0;
+}
+
+input[type=checkbox]:checked~.container {
+  -webkit-animation: openclosed 2s ease 0s;
+  animation: openclosed 2s ease 0s;
+  -webkit-transform: rotate(720deg);
+  transform: rotate(720deg);
+  --check-color: #80e490;
+}
+
+input[type=checkbox]:checked~.container .check-a {
+  -webkit-transform: translate(83px, 57px) rotate(-135deg) scale(1.4);
+  transform: translate(83px, 57px) rotate(-135deg) scale(1.4);
+}
+
+input[type=checkbox]:checked~.container .side-top {
+  -webkit-transform: translate(15px, 15px) rotate(-360deg) scale(1.89, 1);
+  transform: translate(15px, 15px) rotate(-360deg) scale(1.89, 1);
+}
+
+input[type=checkbox]:checked~.container .check-b {
+  -webkit-transform: translate(-62px, 72px) rotate(-225deg) scale(1.4);
+  transform: translate(-62px, 72px) rotate(-225deg) scale(1.4);
+}
+
+input[type=checkbox]:checked~.container .side-left {
+  -webkit-transform: translate(15px, -15px) rotate(-360deg) scale(1, 1.89);
+  transform: translate(15px, -15px) rotate(-360deg) scale(1, 1.89);
+}
+
+input[type=checkbox]:checked~.container .side-right {
+  -webkit-transform: translate(-15px, 15px) rotate(-360deg) scale(1, 1.89);
+  transform: translate(-15px, 15px) rotate(-360deg) scale(1, 1.89);
+}
+
+input[type=checkbox]:checked~.container .check-d {
+  -webkit-transform: translate(68px, -88px) rotate(-45deg) scale(1.4);
+  transform: translate(68px, -88px) rotate(-45deg) scale(1.4);
+}
+
+input[type=checkbox]:checked~.container .side-bottom {
+  -webkit-transform: translate(-15px, -15px) rotate(-360deg) scale(1.89, 1);
+  transform: translate(-15px, -15px) rotate(-360deg) scale(1.89, 1);
+}
+
+input[type=checkbox]:checked~.container .check-c {
+  -webkit-transform: translate(-77px, -73px) rotate(-315deg) scale(1.4);
+  transform: translate(-77px, -73px) rotate(-315deg) scale(1.4);
+}
+
+@-webkit-keyframes openclosed {
+  0% {
+    grid-gap: 10px;
+  }
+
+  50% {
+    grid-gap: 30px;
+  }
+
+  100% {
+    grid-gap: 0px;
+  }
+}
+
+@keyframes openclosed {
+  0% {
+    grid-gap: 10px;
+  }
+
+  50% {
+    grid-gap: 30px;
+  }
+
+  100% {
+    grid-gap: 0px;
+  }
 }
 
 .containers {
